@@ -40,24 +40,32 @@ class SubmitButton extends StatelessWidget {
             style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor)),
             onLongPress: onLongPress,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-              child: Row(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                child: Visibility(
+                  visible: !state.isLoading,
+                  replacement: const SizedBox(height: 20, width: 20, child: CircularProgressIndicator()),
+                  child: Text(
+                    text,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white),
+                  ),
+                )
+
+                /*   Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(text,
-                      style: Theme.of(context).elevatedButtonTheme.style?.textStyle!.resolve({MaterialState.pressed})?.copyWith(
-                          color: Theme.of(context)
-                              .primaryColor) // TextStyle(color: !isPrimaryColor ? Theme.of(context).primaryColor : ThemeConst.primaryForegroundColor),
-                      ),
+                  Text(
+                    text,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.white),
+                  ),
                   if (state.isLoading)
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Theme.of(context).primaryColor)),
                     )
                 ],
-              ),
-            ),
+              ), */
+                ),
           );
         },
       ),
