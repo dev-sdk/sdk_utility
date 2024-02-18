@@ -3,7 +3,7 @@ part of "./index.dart";
 class ThemeHandler extends Cubit<ThemeData> {
   Brightness currentBrightness = Brightness.light;
   final BuildContext context;
-  ThemeHandler(this.context) : super(_lightTheme) {
+  ThemeHandler(this.context) : super(ThemeManager.light) {
     PlatformDispatcher dispatcher = PlatformDispatcher.instance;
     currentBrightness = dispatcher.platformBrightness;
     _update();
@@ -14,7 +14,7 @@ class ThemeHandler extends Cubit<ThemeData> {
     };
   }
   void _update() {
-    emit(currentBrightness == Brightness.dark ? _darkTheme : _lightTheme);
+    emit(currentBrightness == Brightness.dark ? ThemeManager.dark : ThemeManager.light);
   }
 
   void toggleTheme() {
@@ -26,6 +26,6 @@ class ThemeHandler extends Cubit<ThemeData> {
 }
 
 class ThemeManager {
-  static ThemeData get light => _lightTheme;
-  static ThemeData get dark => _darkTheme;
+  static ThemeData get light => ThemeData(useMaterial3: utilityConfig.useMaterial3, colorScheme: utilityConfig.lightColorScheme);
+  static ThemeData get dark => ThemeData(useMaterial3: utilityConfig.useMaterial3, colorScheme: utilityConfig.darkColorScheme);
 }

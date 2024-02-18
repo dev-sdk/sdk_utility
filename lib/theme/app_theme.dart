@@ -68,11 +68,7 @@ const defaultDarkColorScheme = ColorScheme(
   scrim: Color(0xFF000000),
 );
 
-ThemeData _lightTheme = ThemeData(useMaterial3: true, colorScheme: flexSchemeLight);
-ThemeData _darkTheme = ThemeData(useMaterial3: true, colorScheme: flexSchemeDark);
 
-// Light and dark ColorSchemes made by FlexColorScheme v7.3.1.
-// These ColorScheme objects require Flutter 3.7 or later.
 const ColorScheme flexSchemeLight = ColorScheme(
   brightness: Brightness.light,
   primary: Color(0xff4496e0),

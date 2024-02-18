@@ -1,6 +1,6 @@
 part of "./index.dart";
 
-class PasswordValidations {
+class PasswordValidations implements Validator {
   final int minPasswordLength;
   PasswordValidations([this.minPasswordLength = 8]);
 
@@ -25,5 +25,10 @@ class PasswordValidations {
     if (!hasSpecialChar.hasMatch(password)) return "Password must contain one Special character.";
     if (password.length < minPasswordLength) return "Password length must be min $minPasswordLength.";
     return null;
+  }
+
+  @override
+  String? validate(String? text) {
+    return validateFull(text);
   }
 }

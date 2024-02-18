@@ -12,7 +12,7 @@ class SdkException implements Exception {
   }
 
   factory SdkException.saveByCode(ErrorCode errorCode, String message, {String? info}) {
-    SdkException exception = SdkException(errorCode.code, message, info: info);
+    SdkException exception = SdkException(errorCode.getErrorCode(), message, info: info);
     _errorMessages.add(exception);
     return exception;
   }
@@ -31,8 +31,8 @@ class SdkException implements Exception {
 
   static SdkException findByCode(ErrorCode code) {
     return _errorMessages.firstWhere(
-      (e) => code.code == e.code,
-      orElse: () => ExceptionConst.unKnown(code.code),
+      (e) => code.getErrorCode() == e.code,
+      orElse: () => ExceptionConst.unKnown(code.getErrorCode()),
     );
   }
 

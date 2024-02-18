@@ -18,7 +18,7 @@ extension StringExtension on String {
   /// Order should be with s1, s2 .....
   ///
   /// @example 'change this %s1$ to this $s2$. main is %s1%;'
-  String replaceAllWithOrder(List<String> data) {
+  String replaceAllInOrder(List<String> data) {
     String main = this;
     RegExp regex = RegExp(r"%([^%]+)%");
     Iterable<Match> matches = regex.allMatches(main);
