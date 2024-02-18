@@ -3,12 +3,12 @@ part of "./index.dart";
 class UtilityMaterialApp extends StatelessWidget {
   final String title;
   final RouterConfig<Object>? routerConfig;
-  final BlocProvider authProvider;
+  final List<BlocProvider>? initialProviders;
   final bool enableAppLoader;
   const UtilityMaterialApp({
     required this.title,
     required this.routerConfig,
-    required this.authProvider,
+    this.initialProviders,
     this.enableAppLoader = false,
     super.key,
   });
@@ -18,7 +18,7 @@ class UtilityMaterialApp extends StatelessWidget {
     return MultiBlocProvider(
       key: key,
       providers: [
-        authProvider,
+        if (initialProviders != null) ...initialProviders!,
         BlocProvider(create: (context) => NetworkConnectionCubit()),
         BlocProvider(create: (context) => ThemeHandler(context)),
         if (enableAppLoader) BlocProvider(create: (context) => AppLoaderCubit()),
