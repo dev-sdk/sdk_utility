@@ -2,12 +2,14 @@ part of "./index.dart";
 
 class UtilityMaterialApp extends StatelessWidget {
   final String title;
-  final RouterConfig<Object>? routerConfig;
+  final RouterConfig<Object> routerConfig;
+  final void Function(BuildContext) pageContext;
   final List<BlocProvider>? initialProviders;
   final bool enableAppLoader;
   const UtilityMaterialApp({
     required this.title,
     required this.routerConfig,
+    required this.pageContext,
     this.initialProviders,
     this.enableAppLoader = false,
     super.key,
@@ -25,16 +27,18 @@ class UtilityMaterialApp extends StatelessWidget {
       ],
       child: Builder(builder: (context) {
         return BlocBuilder<ThemeHandler, ThemeData>(
-          builder: (context, state) {
+          builder: (ctx, state) {
             return MaterialApp.router(
               title: title,
               routerConfig: routerConfig,
               theme: state,
+              debugShowCheckedModeBanner: false,
               themeMode: ThemeMode.system,
               builder: (context, child) {
                 return SafeArea(
                   child: BlocBuilder<NetworkConnectionCubit, NetworkConnectionState>(
                     builder: (context, networkState) {
+                      pageContext(context);
                       return checkNetworkAndLoader(networkState, child, context);
                     },
                   ),

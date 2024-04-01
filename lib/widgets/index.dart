@@ -7,3 +7,4 @@ import 'package:sdk_utility/theme/index.dart';
 part "app_loader.dart";
 part "material_app.dart";
 part "network_page_loader.dart";
+part 'utility_run_app.dart';
