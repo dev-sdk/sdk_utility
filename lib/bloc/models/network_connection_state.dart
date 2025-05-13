@@ -1,4 +1,4 @@
-part of "./index.dart";
+part of "index.dart";
 
 enum NetworkConnectionStatus { disconnected, connected, checking }
 

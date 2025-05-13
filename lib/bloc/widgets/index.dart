@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sdk_utility/cubits/index.dart';
-import 'package:sdk_utility/models/index.dart';
-import 'package:sdk_utility/theme/index.dart';
+import 'package:sdk_utility/bloc/cubits/index.dart';
+import 'package:sdk_utility/bloc/models/index.dart';
+import 'package:sdk_utility/bloc/theme/index.dart';
 
 part "app_loader.dart";
 part "material_app.dart";

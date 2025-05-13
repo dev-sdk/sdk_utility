@@ -19,7 +19,7 @@ class PasswordTextField extends StatelessWidget {
             validator: !requiredValidation ? null : (value) => PasswordValidations().validateFull(value),
             obscureText: !state,
             decoration: InputDecoration(
-              border: border ?? utilityConfig.getInputBorder,
+              border: border,
               labelText: label,
               suffixIcon: IconButton(
                   onPressed: () {

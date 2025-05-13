@@ -1,4 +1,4 @@
-part of './index.dart';
+part of 'index.dart';
 
 class NoNetworkWidget extends StatelessWidget {
   final NetworkConnectionState state;

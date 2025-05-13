@@ -37,7 +37,7 @@ class SubmitButton extends StatelessWidget {
                     await onClick(controller);
                     controller.disableLoading();
                   }),
-            style: ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Theme.of(context).primaryColor)),
+            style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).primaryColor)),
             onLongPress: onLongPress,
             child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),

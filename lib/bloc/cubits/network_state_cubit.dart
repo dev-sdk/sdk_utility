@@ -1,8 +1,8 @@
-part of './index.dart';
+part of 'index.dart';
 
 class NetworkConnectionCubit extends Cubit<NetworkConnectionState> {
   int _isFirstTime = 0;
-  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
   NetworkConnectionCubit() : super(NetworkConnectionState(false, NetworkConnectionStatus.checking)) {
     _connectivitySubscription = _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
     initConnectivity();
@@ -10,18 +10,17 @@ class NetworkConnectionCubit extends Cubit<NetworkConnectionState> {
 
   final Connectivity _connectivity = Connectivity();
   Future<void> initConnectivity() async {
-    late ConnectivityResult result;
+    late List<ConnectivityResult> result;
     try {
       result = await _connectivity.checkConnectivity();
     } on PlatformException {
       return;
     }
-
     return _updateConnectionStatus(result);
   }
 
-  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
-    if (result == ConnectivityResult.none) {
+  Future<void> _updateConnectionStatus(List<ConnectivityResult> result) async {
+    if (result.isEmpty || result.contains(ConnectivityResult.none)) {
       emit(NetworkConnectionState(true, NetworkConnectionStatus.disconnected));
       _isFirstTime++;
     } else {

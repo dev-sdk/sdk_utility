@@ -23,7 +23,7 @@ class SdkException implements Exception {
   }
 
   @override
-  String toString() => 'ResponseException(code: $code, message: $message, info: $info)';
+  String toString() => 'SdkException(code: $code, message: $message, info: $info)';
 
   static final List<SdkException> _errorMessages = List.empty(growable: true);
 

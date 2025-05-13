@@ -1,4 +1,4 @@
-part of "./index.dart";
+part of "index.dart";
 
 class SubmitButtonState {
   final bool isLoading;

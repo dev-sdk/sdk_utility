@@ -1,6 +1,6 @@
 part of "./index.dart";
 
-enum FirebaseErrorCodes implements ErrorCode {
+enum SdkExceptionErrorCodes implements ErrorCode {
   weakPassword("weak-password"),
   invalidEmail("invalid-email"),
   emailAlreadyInUse("email-already-in-use"),
@@ -21,7 +21,7 @@ enum FirebaseErrorCodes implements ErrorCode {
   ;
 
   final String code;
-  const FirebaseErrorCodes(this.code);
+  const SdkExceptionErrorCodes(this.code);
 
   @override
   String getErrorCode() => code;

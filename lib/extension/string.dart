@@ -5,13 +5,11 @@ extension StringExtension on String {
     String main = this;
     RegExp regex = RegExp(r"%([^%]+)%");
     Iterable<Match> matches = regex.allMatches(main);
-
     List<Pattern> extractedItems = matches.map((match) => match.pattern).toList();
     if (data.length < extractedItems.length) throw LengthMissMatchException();
     for (int i = 0; i < extractedItems.length; i++) {
       main = main.replaceFirst(extractedItems[i], data[i]);
     }
-
     return main;
   }
 
@@ -22,7 +20,6 @@ extension StringExtension on String {
     String main = this;
     RegExp regex = RegExp(r"%([^%]+)%");
     Iterable<Match> matches = regex.allMatches(main);
-
     List<String> extractedItems = matches.map((match) => match.group(1)!).toSet().toList();
     extractedItems = _sortedList(extractedItems);
     if (data.length < extractedItems.length) throw LengthMissMatchException();

@@ -1,4 +1,4 @@
-part of "./index.dart";
+part of "index.dart";
 
 class AppLoaderCubit extends Cubit<AppLoaderState> {
   AppLoaderCubit() : super(AppLoaderState(isLoading: false));

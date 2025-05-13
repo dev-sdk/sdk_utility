@@ -1,4 +1,4 @@
-part of "./index.dart";
+part of "index.dart";
 
 class ThemeHandler extends Cubit<ThemeData> {
   Brightness currentBrightness = Brightness.light;
@@ -26,6 +26,6 @@ class ThemeHandler extends Cubit<ThemeData> {
 }
 
 class ThemeManager {
-  static ThemeData get light => ThemeData(useMaterial3: utilityConfig.useMaterial3, colorScheme: utilityConfig.lightColorScheme);
-  static ThemeData get dark => ThemeData(useMaterial3: utilityConfig.useMaterial3, colorScheme: utilityConfig.darkColorScheme);
+  static ThemeData get light => ThemeData(useMaterial3: true, colorScheme: flexSchemeLight);
+  static ThemeData get dark => ThemeData(useMaterial3: true, colorScheme: flexSchemeDark);
 }
