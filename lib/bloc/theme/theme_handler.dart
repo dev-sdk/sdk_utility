@@ -13,12 +13,17 @@ class ThemeHandler extends Cubit<ThemeData> {
       _update();
     };
   }
+  
   void _update() {
     emit(currentBrightness == Brightness.dark ? ThemeManager.dark : ThemeManager.light);
   }
 
   void toggleTheme() {
-    currentBrightness = state.brightness == Brightness.dark ? Brightness.light : Brightness.dark;
+    setTheme(state.brightness == Brightness.dark ? Brightness.light : Brightness.dark);
+  }
+
+  void setTheme(Brightness brightness) {
+    currentBrightness = brightness;
     _update();
   }
 

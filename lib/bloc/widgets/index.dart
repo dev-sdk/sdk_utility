@@ -4,7 +4,7 @@ import 'package:sdk_utility/bloc/cubits/index.dart';
 import 'package:sdk_utility/bloc/models/index.dart';
 import 'package:sdk_utility/bloc/theme/index.dart';
 
-part "app_loader.dart";
+part "default_linear_app_loader.dart";
 part "material_app.dart";
 part "network_page_loader.dart";
 part 'utility_run_app.dart';

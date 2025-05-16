@@ -3,15 +3,17 @@ part of "index.dart";
 class UtilityMaterialApp extends StatelessWidget {
   final String title;
   final RouterConfig<Object> routerConfig;
-  final void Function(BuildContext) pageContext;
+  final void Function(BuildContext)? pageContext;
   final List<BlocProvider>? initialProviders;
   final bool enableAppLoader;
+  final Widget? loader;
   const UtilityMaterialApp({
     required this.title,
     required this.routerConfig,
-    required this.pageContext,
+    this.pageContext,
     this.initialProviders,
     this.enableAppLoader = false,
+    this.loader,
     super.key,
   });
 
@@ -20,10 +22,10 @@ class UtilityMaterialApp extends StatelessWidget {
     return MultiBlocProvider(
       key: key,
       providers: [
-        if (initialProviders != null) ...initialProviders!,
         BlocProvider(create: (context) => NetworkConnectionCubit()),
         BlocProvider(create: (context) => ThemeHandler(context)),
         if (enableAppLoader) BlocProvider(create: (context) => AppLoaderCubit()),
+        if (initialProviders != null) ...initialProviders!,
       ],
       child: Builder(builder: (context) {
         return BlocBuilder<ThemeHandler, ThemeData>(
@@ -38,7 +40,7 @@ class UtilityMaterialApp extends StatelessWidget {
                 return SafeArea(
                   child: BlocBuilder<NetworkConnectionCubit, NetworkConnectionState>(
                     builder: (context, networkState) {
-                      pageContext(context);
+                      if (pageContext != null) pageContext!(context);
                       return checkNetworkAndLoader(networkState, child, context);
                     },
                   ),
@@ -69,17 +71,18 @@ class UtilityMaterialApp extends StatelessWidget {
                 child: SizedBox(height: 17, child: NoNetworkWidget(state)),
               ),
         body: AbsorbPointer(
-          absorbing: (appLoaderState?.preventPageClick ?? false) ? true : false,
+          absorbing: appLoaderState?.preventPageClick ?? loader == null || false,
           child: Stack(
             children: [
               if (child != null) child,
               if (appLoaderState != null && appLoaderState.isLoading) ...[
-                SizedBox(height: 10, child: AppLoader(appLoaderState)),
-                if (appLoaderState.preventPageClick)
+                if (loader == null) SizedBox(height: 10, child: DefaultLinearAppLoader(appLoaderState)),
+                if (appLoaderState.preventPageClick || loader != null)
                   Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
-                    color: const Color.fromARGB(105, 64, 60, 60),
+                    color: const Color.fromARGB(52, 107, 100, 100),
+                    child: loader,
                   )
               ]
             ],

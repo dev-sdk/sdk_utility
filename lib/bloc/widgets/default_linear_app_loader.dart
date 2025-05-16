@@ -1,8 +1,8 @@
 part of "index.dart";
 
-class AppLoader extends StatelessWidget {
+class DefaultLinearAppLoader extends StatelessWidget {
   final AppLoaderState state;
-  const AppLoader(this.state, {super.key});
+  const DefaultLinearAppLoader(this.state, {super.key});
 
   @override
   Widget build(BuildContext context) {
