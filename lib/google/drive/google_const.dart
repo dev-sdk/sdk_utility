@@ -1,4 +1,4 @@
-part of 'google_drive_service.dart';
+part of '_google_drive_service.dart';
 
 class GoogleConst {
   static const List<String> scopes = [

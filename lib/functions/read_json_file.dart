@@ -1,6 +1,6 @@
 part of './index.dart';
 
-Future<dynamic> readJsonFile(String path) async {
+Future<Map<String, dynamic>> readJsonFile(String path) async {
   final String response = await rootBundle.loadString(path);
   return await json.decode(response);
 }
