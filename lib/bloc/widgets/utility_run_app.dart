@@ -7,6 +7,7 @@ class UtilityRunApp {
   late final List<BlocProvider>? _initialProviders;
   late final bool _enableAppLoader;
   late final Widget? loader;
+  late final AppTheme? appTheme;
   late final Key? _key;
 
   UtilityRunApp._init(
@@ -16,6 +17,7 @@ class UtilityRunApp {
     this._initialProviders,
     this._enableAppLoader,
     this.loader,
+    this.appTheme,
     this._key,
   );
 
@@ -28,9 +30,10 @@ class UtilityRunApp {
     List<BlocProvider>? initialProviders,
     bool enableAppLoader = true,
     Widget? loader,
+    AppTheme? appTheme,
     Key? key,
   }) async {
-    var runAppRef = UtilityRunApp._init(title, appContext, routerConfig, initialProviders, enableAppLoader, loader, key);
+    var runAppRef = UtilityRunApp._init(title, appContext, routerConfig, initialProviders, enableAppLoader, loader, appTheme, key);
     WidgetsFlutterBinding.ensureInitialized();
     if (onInit != null) await onInit();
     runApp(runAppRef.initMaterialApp());
@@ -44,6 +47,7 @@ class UtilityRunApp {
       enableAppLoader: _enableAppLoader,
       initialProviders: _initialProviders,
       loader: loader,
+      appTheme: appTheme,
       key: _key,
     );
   }

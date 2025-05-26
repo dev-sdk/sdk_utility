@@ -15,7 +15,7 @@ class SubmitButton extends StatelessWidget {
 
   final String text;
   final Future<void> Function(SubmitButtonCubit) onClick;
-  final void Function()? onLongPress;
+  final Future<void> Function(SubmitButtonCubit)? onLongPress;
   final bool isPrimaryColor;
 
   @override
@@ -38,7 +38,17 @@ class SubmitButton extends StatelessWidget {
                     controller.disableLoading();
                   }),
             style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Theme.of(context).primaryColor)),
-            onLongPress: onLongPress,
+            onLongPress: state.isDisabled || onLongPress == null
+                ? null
+                : (() async {
+                    final networkCubit = context.read<NetworkConnectionCubit>();
+                    if (!networkCubit.isConnected) return;
+                    if (state.isLoading) return;
+                    final controller = context.read<SubmitButtonCubit>();
+                    controller.enableLoading();
+                    await onLongPress!(controller);
+                    controller.disableLoading();
+                  }),
             child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: Visibility(

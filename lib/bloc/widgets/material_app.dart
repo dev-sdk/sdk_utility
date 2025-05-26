@@ -7,6 +7,7 @@ class UtilityMaterialApp extends StatelessWidget {
   final List<BlocProvider>? initialProviders;
   final bool enableAppLoader;
   final Widget? loader;
+  final AppTheme? appTheme;
   const UtilityMaterialApp({
     required this.title,
     required this.routerConfig,
@@ -14,6 +15,7 @@ class UtilityMaterialApp extends StatelessWidget {
     this.initialProviders,
     this.enableAppLoader = false,
     this.loader,
+    this.appTheme,
     super.key,
   });
 
@@ -22,10 +24,10 @@ class UtilityMaterialApp extends StatelessWidget {
     return MultiBlocProvider(
       key: key,
       providers: [
-        BlocProvider(create: (context) => NetworkConnectionCubit()),
-        BlocProvider(create: (context) => ThemeHandler(context)),
-        if (enableAppLoader) BlocProvider(create: (context) => AppLoaderCubit()),
         if (initialProviders != null) ...initialProviders!,
+        BlocProvider(create: (context) => NetworkConnectionCubit()),
+        BlocProvider(create: (context) => ThemeHandler(context, appTheme ?? AppTheme.getDefaultAppTheme)),
+        if (enableAppLoader) BlocProvider(create: (context) => AppLoaderCubit()),
       ],
       child: Builder(builder: (context) {
         return BlocBuilder<ThemeHandler, ThemeData>(
