@@ -76,14 +76,27 @@ class AppTheme {
   ThemeData getThemeData(ColorScheme colorScheme) {
     return ThemeData.from(colorScheme: colorScheme, useMaterial3: true).copyWith(
       visualDensity: VisualDensity.adaptivePlatformDensity,
-      appBarTheme: AppBarTheme(backgroundColor: colorScheme.primary, foregroundColor: colorScheme.onPrimary, elevation: 0),
+      appBarTheme: AppBarTheme(
+        backgroundColor: colorScheme.primary.withAlpha(100),
+        foregroundColor: colorScheme.onPrimary,
+        elevation: 0,
+      ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: colorScheme.primary,
         foregroundColor: colorScheme.onPrimary,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(backgroundColor: colorScheme.primary, foregroundColor: colorScheme.onPrimary),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
+        ),
       ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+        ),
+      ),
+      iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(backgroundColor: colorScheme.primary)),
       cardTheme: CardThemeData(
         color: colorScheme.surface,
         elevation: 4,
@@ -103,22 +116,64 @@ class AppTheme {
       tabBarTheme: TabBarThemeData(
         labelColor: colorScheme.primary,
         unselectedLabelColor: colorScheme.onSurfaceVariant,
-        indicator: UnderlineTabIndicator(borderSide: BorderSide(color: colorScheme.primary, width: 2)),
+        indicator: UnderlineTabIndicator(
+          borderSide: BorderSide(color: colorScheme.primary, width: 2),
+        ),
       ),
-      dialogTheme: DialogThemeData(backgroundColor: colorScheme.surface, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
+      dialogTheme: DialogThemeData(
+        backgroundColor: colorScheme.surface,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      ),
       switchTheme: SwitchThemeData(
         thumbColor: WidgetStateProperty.resolveWith(
           (states) => states.contains(WidgetState.selected) ? colorScheme.primary : colorScheme.outline,
         ),
         trackColor: WidgetStateProperty.all(colorScheme.primaryContainer),
       ),
-      checkboxTheme: CheckboxThemeData(fillColor: WidgetStateProperty.all(colorScheme.primary)),
-      radioTheme: RadioThemeData(fillColor: WidgetStateProperty.all(colorScheme.primary)),
-      sliderTheme: SliderThemeData(activeTrackColor: colorScheme.primary, thumbColor: colorScheme.primary),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.all(colorScheme.primary),
+      ),
+      radioTheme: RadioThemeData(
+        fillColor: WidgetStateProperty.all(colorScheme.primary),
+      ),
+      sliderTheme: SliderThemeData(
+        activeTrackColor: colorScheme.primary,
+        thumbColor: colorScheme.primary,
+      ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: colorScheme.surfaceContainerHighest,
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+      tooltipTheme: TooltipThemeData(
+        decoration: BoxDecoration(
+          color: colorScheme.surface,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        textStyle: TextStyle(color: colorScheme.onSurface),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: colorScheme.primary,
+        contentTextStyle: TextStyle(color: colorScheme.onPrimary),
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: colorScheme.surface,
+        modalBackgroundColor: colorScheme.surfaceContainerHighest,
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        color: colorScheme.primary,
+      ),
+      chipTheme: ChipThemeData(
+        backgroundColor: colorScheme.surface,
+        selectedColor: colorScheme.primary,
+        secondarySelectedColor: colorScheme.primaryContainer,
+        labelStyle: TextStyle(color: colorScheme.onSurface),
+        secondaryLabelStyle: TextStyle(color: colorScheme.onSurfaceVariant),
+      ),
+      navigationRailTheme: NavigationRailThemeData(
+        backgroundColor: colorScheme.surface,
+        selectedIconTheme: IconThemeData(color: colorScheme.primary),
+        unselectedIconTheme: IconThemeData(color: colorScheme.onSurfaceVariant),
       ),
     );
   }
